@@ -18,7 +18,7 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 16px;
+  padding: 10px;
   position: relative;
   z-index: 2;
 }
@@ -32,7 +32,7 @@ button {
   color: #ff3b6f;
   font-size: 19px;
   cursor: pointer;
-  margin-top: 24px;
+  margin-top: 20px;
   transition: .4s;
 }
 button:hover { transform: scale(1.15); }
@@ -53,27 +53,33 @@ button:hover { transform: scale(1.15); }
 .heart { font-size: 80px; animation: heartbeat 1s infinite; }
 @keyframes heartbeat { 0%{transform:scale(1);} 30%{transform:scale(1.5);} 60%{transform:scale(1);} }
 .slider {
-  width: 90vw;                  /* মোবাইলে প্রায় full width */
-  max-width: 380px;             /* ডেস্কটপে খুব বড় না হয় */
-  height: 70vh;                 /* স্ক্রিনের ৭০% হাইট, অ্যাডাপটিভ */
-  max-height: 620px;            /* ম্যাক্স লিমিট */
+  width: 90vw;
+  max-width: 380px;
+  height: 70vh;  /* বড় + অ্যাডাপটিভ */
+  max-height: 650px;
   border-radius: 45px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 90px rgba(255,255,255,.9);
-  margin: 20px auto;
+  box-shadow: 0 0 100px rgba(255,255,255,.9);
+  margin: 15px auto;
+  display: flex;
+  justify-content: center;  /* হরাইজন্টাল সেন্টার */
+  align-items: center;      /* ভার্টিকাল সেন্টার */
+  background: rgba(0,0,0,0.1); /* খালি জায়গা সুন্দর */
 }
 .slider img {
-  position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: contain;          /* পুরো ছবি দেখাবে */
-  object-position: top center;  /* উপর থেকে শুরু করে মাঝখানে অ্যালাইন */
+  object-fit: contain;        /* পুরো ছবি দেখাবে */
+  object-position: center center;  /* পুরোপুরি মাঝখানে */
   opacity: 0;
   transform: scale(1.05);
   transition: opacity 2s, transform 2s;
 }
-.slider img.active { opacity: 1; transform: scale(1); }
+.slider img.active {
+  opacity: 1;
+  transform: scale(1);
+}
 
 /* অ্যানিমেশন */
 .slider img:nth-child(1).active { transform: scale(1.15) !important; transition: transform 4s ease-in-out; }
@@ -183,7 +189,7 @@ button:hover { transform: scale(1.15); }
 </div>
 
 <script>
-// Elements...
+// ... (আগের স্ক্রিপ্ট অংশ অপরিবর্তিত রাখলাম, শুধু CSS চেঞ্জ হয়েছে)
 const music = document.getElementById('music');
 const sections = document.querySelectorAll('section');
 const finalOverlay = document.getElementById('finalOverlay');
@@ -206,7 +212,7 @@ btnCounter.onclick = () => showSection('photos');
 btnPhotos.onclick  = () => showSection('final');
 btnFinal.onclick   = finalMagic;
 
-// Counter...
+// Counter
 const startDate = new Date("2025-02-13T11:14:00");
 setInterval(() => {
   const d = new Date() - startDate;
@@ -218,7 +224,7 @@ setInterval(() => {
   document.getElementById("time").innerHTML = `${days} Days ${h}h ${m}m ${s}s ❤️`;
 }, 1000);
 
-// Slider...
+// Slider
 let slides = document.querySelectorAll(".slider img");
 let current = 0;
 setInterval(() => {
@@ -227,7 +233,7 @@ setInterval(() => {
   slides[current].classList.add('active');
 }, 3500);
 
-// Floating hearts...
+// Floating hearts
 setInterval(() => {
   let h = document.createElement('div');
   h.innerHTML = "💕";
@@ -240,17 +246,17 @@ setInterval(() => {
   setTimeout(() => h.remove(), 18000);
 }, 400);
 
-// Falling roses...
+// Falling roses
 setInterval(() => {
   let r = document.createElement('img');
-  r.src = 'https://static.vecteezy.com/system/resources/thumbnails/044/771/653/small/pink-rose-petals-falling-gracefully-free-png.png';  // আরো সুন্দর PNG
+  r.src = 'https://png.pngtree.com/png-vector/20241118/ourmid/pngtree-pink-rose-petals-falling-on-a-transparent-background-perfect-for-creating-png-image_14487766.png';
   r.className = 'rose';
   r.style.left = Math.random()*100 + 'vw';
   document.body.appendChild(r);
   setTimeout(() => r.remove(), 13000);
 }, 700);
 
-// Final magic...
+// Final magic
 function finalMagic() {
   btnFinal.style.display = 'none';
   finalOverlay.classList.add('show');
@@ -271,4 +277,4 @@ function finalMagic() {
 }
 </script>
 </body>
-  </html>
+    </html>
