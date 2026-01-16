@@ -5,80 +5,95 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forever With You ❤️ Tasnim</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
 body {
   background: radial-gradient(circle at top, #ffd1dc, #ff9aa2, #ff6f91);
   color: white;
   overflow: hidden;
   text-align: center;
+  min-height: 100vh;
 }
+
 section {
   min-height: 100vh;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
   position: relative;
   z-index: 2;
 }
-section.active { display: flex; }
-h1, h2 { text-shadow: 0 0 30px rgba(255,255,255,.9); }
+
+section.active {
+  display: flex;
+}
+
+h1, h2 {
+  text-shadow: 0 0 30px rgba(255,255,255,.9);
+}
+
 button {
-  padding: 15px 38px;
+  padding: 15px 40px;
   border: none;
   border-radius: 50px;
   background: white;
   color: #ff3b6f;
   font-size: 19px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 25px;
   transition: .4s;
 }
-button:hover { transform: scale(1.15); }
-.card {
-  background: rgba(255,255,255,.22);
-  backdrop-filter: blur(10px);
-  padding: 30px;
-  border-radius: 30px;
-  max-width: 720px;
+
+button:hover {
+  transform: scale(1.15);
 }
-.counter {
-  font-size: 26px;
-  font-weight: bold;
-  text-shadow: 0 0 25px #fff;
-  animation: pulse 1.5s infinite;
-}
-@keyframes pulse { 0%{opacity:.7;} 50%{opacity:1;} 100%{opacity:.7;} }
-.heart { font-size: 80px; animation: heartbeat 1s infinite; }
-@keyframes heartbeat { 0%{transform:scale(1);} 30%{transform:scale(1.5);} 60%{transform:scale(1);} }
-.slider {
-  width: 90vw;
-  max-width: 380px;
-  height: 70vh;
-  max-height: 650px;
-  border-radius: 45px;
+
+.slider-container {
+  width: 92vw;
+  max-width: 420px;
+  height: 75vh;
+  max-height: 720px;
+  border-radius: 38px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 100px rgba(255,255,255,.9);
+  box-shadow: 0 10px 60px rgba(0,0,0,0.25);
   margin: 15px auto;
+  background: rgba(0,0,0,0.08);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,0.1);
 }
+
+.slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 .slider img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center center;
   opacity: 0;
-  transition: opacity 1.5s ease-in-out;
+  transition: opacity 1.2s ease-in-out;
 }
+
 .slider img.active {
   opacity: 1;
 }
 
+/* Floating hearts & roses */
 .float {
   position: fixed;
   pointer-events: none;
@@ -86,10 +101,11 @@ button:hover { transform: scale(1.15); }
   animation: floatUp linear forwards;
 }
 @keyframes floatUp {
-  from { transform: translateY(0) scale(.6); opacity: 0; }
-  10%  { opacity: 1; }
-  to   { transform: translateY(-130vh) scale(1.1); opacity: 0; }
+  from { transform: translateY(0) scale(.6); opacity:0; }
+  10% { opacity:1; }
+  to { transform: translateY(-130vh) scale(1.1); opacity:0; }
 }
+
 .rose {
   position: fixed;
   width: 35px;
@@ -100,75 +116,48 @@ button:hover { transform: scale(1.15); }
   from { top:-60px; opacity:1; }
   to { top:120vh; opacity:0; }
 }
-.firework {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  animation: explode 1.4s ease-out forwards;
-}
-@keyframes explode {
-  to { transform: translate(var(--x),var(--y)); opacity: 0; }
-}
-#finalOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 5;
-  opacity: 0;
-  transition: opacity 1s;
-  pointer-events: none;
-}
-#finalOverlay.show { opacity: 1; pointer-events: auto; }
-#finalOverlay h1 { font-size: 40px; margin-bottom: 20px; }
+
+/* বাকি স্টাইল যেমন counter, card, finalOverlay আগের মতো রাখতে পারো */
 </style>
 </head>
 <body>
 
+<!-- Audio -->
 <audio id="music" loop>
   <source src="ehsaas.mp3" type="audio/mpeg">
 </audio>
 
+<!-- Sections -->
 <section id="welcome" class="active">
   <h1>Welcome My Love ❤️</h1>
   <h2>Tasnim</h2>
   <button id="btnWelcome">Enter My Heart 💖</button>
 </section>
 
-<section id="letter">
-  <div class="card">
-    <h2>My Dearest Tasnim 💌</h2>
-    <p>You are my calm in chaos, my forever.</p><br>
-    <p>Since February 13, my heart belongs to you.</p><br>
-    <p>I love you endlessly.</p>
-  </div>
+<section id="letter" style="display:none;">
+  <!-- তোমার লেটার কন্টেন্ট -->
   <button id="btnLetter">Next ❤️</button>
 </section>
 
-<section id="counter">
-  <h2>Our Love Since 💕</h2>
-  <div class="counter" id="time"></div>
+<section id="counter" style="display:none;">
+  <!-- কাউন্টার -->
   <button id="btnCounter">Your Smile 📸</button>
 </section>
 
-<section id="photos">
-  <div class="slider">
-    <img src="tasnim1.jpg" class="active">
-    <img src="tasnim2.jpg">
-    <img src="tasnim3.jpg">
+<section id="photos" style="display:none;">
+  <div class="slider-container">
+    <div class="slider">
+      <img src="tasnim1.jpg" class="active">
+      <img src="tasnim2.jpg">
+      <img src="tasnim3.jpg">
+    </div>
   </div>
-  <p style="margin-top:15px;">My favorite view 💖</p>
+  <p style="margin-top:15px; font-size:1.3rem;">My favorite view 💖</p>
   <button id="btnPhotos">Next Photo ❤️</button>
 </section>
 
-<section id="final">
-  <h1>Will You Stay With Me Forever? 💍</h1>
-  <div class="heart">❤️</div>
-  <button id="btnFinal">YES 💕</button>
+<section id="final" style="display:none;">
+  <!-- ফাইনাল প্রপোজাল -->
 </section>
 
 <div id="finalOverlay">
@@ -177,104 +166,40 @@ button:hover { transform: scale(1.15); }
 </div>
 
 <script>
-const music = document.getElementById('music');
-const sections = document.querySelectorAll('section');
-const finalOverlay = document.getElementById('finalOverlay');
-
+// Button navigation (আগের মতো রাখো)
 const btnWelcome = document.getElementById('btnWelcome');
-const btnLetter  = document.getElementById('btnLetter');
+const btnLetter = document.getElementById('btnLetter');
 const btnCounter = document.getElementById('btnCounter');
 const btnPhotos = document.getElementById('btnPhotos');
-const btnFinal   = document.getElementById('btnFinal');
 
 function showSection(id) {
-  sections.forEach(s => s.classList.remove('active'));
-  document.getElementById(id)?.classList.add('active');
-  music.play().catch(() => {});
+  document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+  document.getElementById(id).style.display = 'flex';
+  document.getElementById('music').play().catch(() => {});
 }
 
 btnWelcome.onclick = () => showSection('letter');
-btnLetter.onclick  = () => showSection('counter');
+btnLetter.onclick = () => showSection('counter');
 btnCounter.onclick = () => showSection('photos');
-btnFinal.onclick   = finalMagic;
 
-const slides = document.querySelectorAll(".slider img");
-let currentIndex = 0;
+// Manual slider
+const slides = document.querySelectorAll('.slider img');
+let current = 0;
 
-// Initial active
-slides[currentIndex].classList.add('active');
+slides[current].classList.add('active');
 
 btnPhotos.onclick = () => {
-  // Hide current
-  slides[currentIndex].classList.remove('active');
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
   
-  // Next index
-  currentIndex = (currentIndex + 1) % slides.length;
-  
-  // Show next
-  slides[currentIndex].classList.add('active');
-  
-  // If last photo, change button text and next click goes to final
-  if (currentIndex === slides.length - 1) {
+  if (current === slides.length - 1) {
     btnPhotos.textContent = "Go to Forever 💍";
     btnPhotos.onclick = () => showSection('final');
   }
 };
 
-// Counter
-const startDate = new Date("2025-02-13T11:14:00");
-setInterval(() => {
-  const d = new Date() - startDate;
-  if (d < 0) return document.getElementById("time").innerHTML = "Counting moments to forever ❤️";
-  const days = Math.floor(d / 86400000);
-  const h = Math.floor(d / 3600000) % 24;
-  const m = Math.floor(d / 60000) % 60;
-  const s = Math.floor(d / 1000) % 60;
-  document.getElementById("time").innerHTML = `${days} Days ${h}h ${m}m ${s}s ❤️`;
-}, 1000);
-
-// Floating hearts
-setInterval(() => {
-  let h = document.createElement('div');
-  h.innerHTML = "💕";
-  h.className = 'float';
-  h.style.left = Math.random()*100 + 'vw';
-  h.style.bottom = '-20px';
-  h.style.fontSize = (20 + Math.random()*30) + 'px';
-  h.style.animationDuration = (10 + Math.random()*8) + 's';
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 18000);
-}, 400);
-
-// Falling roses
-setInterval(() => {
-  let r = document.createElement('img');
-  r.src = 'https://png.pngtree.com/png-vector/20241118/ourmid/pngtree-pink-rose-petals-falling-on-a-transparent-background-perfect-for-creating-png-image_14487766.png';
-  r.className = 'rose';
-  r.style.left = Math.random()*100 + 'vw';
-  document.body.appendChild(r);
-  setTimeout(() => r.remove(), 13000);
-}, 700);
-
-// Final magic
-function finalMagic() {
-  btnFinal.style.display = 'none';
-  finalOverlay.classList.add('show');
-  const interval = setInterval(() => {
-    for(let j=0; j<25; j++) {
-      let f = document.createElement('div');
-      f.className = 'firework';
-      f.style.left = Math.random()*window.innerWidth + 'px';
-      f.style.top = Math.random()*window.innerHeight/2 + 'px';
-      f.style.background = `hsl(${Math.random()*360},100%,70%)`;
-      f.style.setProperty('--x', (Math.random()*400-200)+'px');
-      f.style.setProperty('--y', (Math.random()*400-200)+'px');
-      document.body.appendChild(f);
-      setTimeout(() => f.remove(), 1400);
-    }
-  }, 400);
-  setTimeout(() => clearInterval(interval), 5000);
-}
+// Floating hearts & roses (আগের মতো রাখো)
 </script>
 </body>
-  </html>
+</html>
